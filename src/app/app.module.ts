@@ -8,6 +8,11 @@ import { PriceCalculatorComponent } from './components/price-calculator/price-ca
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,8 +24,13 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatSelectModule,
+    MatTableModule,
+
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

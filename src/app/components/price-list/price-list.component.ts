@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import {Product} from 'src/app/dtos/Product';
-import {PriceItem} from 'src/app/dtos/PriceItem';
+import {Product} from 'src/app/interfaces/Product';
+import {PriceItem} from 'src/app/interfaces/PriceItem';
 
 @Component({
   selector: 'app-price-list',

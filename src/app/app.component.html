@@ -2,8 +2,14 @@
   <span class="fill-remaining-space">Test Product Shop</span>
 </mat-toolbar>
 
-<div>
-    <button mat-raised-button color="primary" routerLink="/price-list">Price List</button>
-    <button mat-raised-button color="primary" routerLink="/price-calculator">Price Calculator</button>
+<div class="container">
+  <div class="button-row">
+    <button mat-raised-button color="primary" routerLink="/price-list" class="button">Price List</button>
+    <button mat-raised-button color="primary" routerLink="/price-calculator"  class="button">Price Calculator</button>
+  </div>
+  
+  <div class="route-container">
     <router-outlet></router-outlet>
+  </div>
+    
 </div>

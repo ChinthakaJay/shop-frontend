@@ -1,3 +1,11 @@
 table {
     width: 100%;
   }
+
+  .mat-column-quantity{
+    width: 50%;
+  }
+
+  .mat-column-price{
+    width: 50%;
+  }

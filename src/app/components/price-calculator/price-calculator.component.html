@@ -16,5 +16,5 @@
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="onClick()" [disabled]="!(isProductSelected && isQuantityValid)">Calculate</button>
     <mat-label>Price :</mat-label>
-    <mat-card *ngIf='priceItem.price!="0"'>{{priceItem.price}}</mat-card>
+    <mat-card *ngIf='priceItem!=null'>{{priceItem.price}}</mat-card>
 </form>

@@ -14,7 +14,7 @@ export class PriceCalculatorComponent implements OnInit {
 
   formGroup: FormGroup;
   products: Product[] = [];
-  priceItem: PriceItem = { 'quantity': 0, 'price': "0" };
+  priceItem: PriceItem | null = null;
   isProductSelected: boolean = false;
   isQuantityValid: boolean = true;
 

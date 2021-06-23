@@ -34,7 +34,7 @@ export class PriceListComponent implements OnInit {
 
     this.productService.getPriceList(productId).subscribe(
       (response: any) => {
-        console.log(response)
+        console.log("Price list: ",response)
         this.priceList = response;
       }, error => {
         console.log(error)
@@ -46,7 +46,7 @@ export class PriceListComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (response: any) => {
         this.products = response;
-        console.log(this.products)
+        console.log("Product list: ",this.products)
       }, error => {
         console.log(error)
       })

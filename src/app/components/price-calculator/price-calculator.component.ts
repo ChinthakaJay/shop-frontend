@@ -15,7 +15,8 @@ export class PriceCalculatorComponent implements OnInit {
   formGroup: FormGroup;
   products: Product[] = [];
   priceItem: PriceItem = { 'quantity': 0, 'price': "0" };
-  isButtonDisabled: boolean = true;
+  isProductSelected: boolean = false;
+  isQuantityValid: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private productService: ProductService) {
     this.formGroup = this.formBuilder.group({
@@ -28,8 +29,16 @@ export class PriceCalculatorComponent implements OnInit {
     this.getProducts()
   }
 
-  onSelect() {
-    this.isButtonDisabled = false
+  onSelectionChange() {
+    this.isProductSelected = true
+  }
+
+  onChange(){
+    if(this.formGroup.controls['quantity'].errors) {
+      this.isQuantityValid = false
+    } else {
+      this.isQuantityValid =true
+    }
   }
 
   onClick() {
@@ -39,21 +48,19 @@ export class PriceCalculatorComponent implements OnInit {
 
     this.productService.getPrice(productId, quantity).subscribe(
       (response: any) => {
-        console.log(response)
+        console.log("Price Item: ",response)
         this.priceItem = response;
       }, error => {
         console.log(error)
       }
     );
-
-    console.log(productId, quantity)
   }
 
   getProducts() {
     this.productService.getProducts().subscribe(
       (response: any) => {
         this.products = response;
-        console.log(this.products)
+        console.log("Product list: ",this.products)
       }, error => {
         console.log(error)
       })

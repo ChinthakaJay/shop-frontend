@@ -17,4 +17,8 @@ export class ProductService {
   getPriceList(productId: number){
     return this.httpClient.get(`http://localhost:8086/v1/products/${productId}/price-list`);
   }
+
+  getPrice(productId: number, quantity: number){
+    return this.httpClient.get(`http://localhost:8086/v1/products/${productId}/price?quantity=${quantity}`)
+  }
 }

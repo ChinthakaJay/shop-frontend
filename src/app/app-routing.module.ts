@@ -6,7 +6,7 @@ import { PriceListComponent } from './components/price-list/price-list.component
 const routes: Routes = [
     { path: 'price-list', component: PriceListComponent },
     { path: 'price-calculator', component: PriceCalculatorComponent },
-    { path: '**', redirectTo: 'price-list'}
+    { path: '**', redirectTo: 'price-calculator'}
 ];
 
 @NgModule({

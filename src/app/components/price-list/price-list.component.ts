@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-
-export interface Product {
-  name: string;
-  id: number;
-}
-
-export interface PriceItem {
-  quantity: number;
-  price: number;
-
-}
+import {Product} from 'src/app/dtos/Product';
+import {PriceItem} from 'src/app/dtos/PriceItem';
 
 @Component({
   selector: 'app-price-list',
@@ -38,7 +29,7 @@ export class PriceListComponent implements OnInit {
 
   onSubmit() {
 
-    const productId = this.formGroup.controls['product'].value;
+    const productId: number = this.formGroup.controls['product'].value;
     console.log(productId)
 
     this.productService.getPriceList(productId).subscribe(
@@ -54,7 +45,6 @@ export class PriceListComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe(
       (response: any) => {
-
         this.products = response;
         console.log(this.products)
       }, error => {

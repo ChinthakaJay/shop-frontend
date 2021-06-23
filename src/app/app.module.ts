@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatInputModule,
     MatCardModule,
+    MatSnackBarModule,
 
     HttpClientModule
   ],

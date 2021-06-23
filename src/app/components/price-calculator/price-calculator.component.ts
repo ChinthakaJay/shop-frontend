@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/interfaces/Product';
 import { PriceItem } from 'src/app/interfaces/PriceItem';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,12 +16,10 @@ export class PriceCalculatorComponent implements OnInit {
   formGroup: FormGroup;
   products: Product[] = [];
   priceItem: PriceItem | null = null;
-  isProductSelected: boolean = false;
-  isQuantityValid: boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService) {
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private _snackBar: MatSnackBar) {
     this.formGroup = this.formBuilder.group({
-      product: [],
+      product: ['', Validators.required],
       quantity: [1, Validators.pattern("\\d+$")],
     })
   }
@@ -29,29 +28,18 @@ export class PriceCalculatorComponent implements OnInit {
     this.getProducts()
   }
 
-  onSelectionChange() {
-    this.isProductSelected = true
-  }
-
-  onChange(){
-    if(this.formGroup.controls['quantity'].errors) {
-      this.isQuantityValid = false
-    } else {
-      this.isQuantityValid =true
-    }
-  }
-
   onClick() {
 
     const productId: number = this.formGroup.controls['product'].value;
     const quantity: number = this.formGroup.controls['quantity'].value;
+    console.log(productId, quantity)
 
     this.productService.getPrice(productId, quantity).subscribe(
       (response: any) => {
-        console.log("Price Item: ",response)
+        console.log("Price Item: ", response)
         this.priceItem = response;
       }, error => {
-        console.log(error)
+        this._snackBar.open(error.error.errorMessage, "Close")
       }
     );
   }
@@ -60,10 +48,9 @@ export class PriceCalculatorComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (response: any) => {
         this.products = response;
-        console.log("Product list: ",this.products)
+        console.log("Product list: ", this.products)
       }, error => {
-        console.log(error)
+        this._snackBar.open(error.error.errorMessage, "Close")
       })
   }
-
 }

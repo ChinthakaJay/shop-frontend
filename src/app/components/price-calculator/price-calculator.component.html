@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup" name="formGroup" class="form">
     <mat-form-field appearance="fill" appearance="outline">
         <mat-label>Select Product</mat-label>
-        <mat-select formControlName="product" name="product" (selectionChange)="onSelectionChange()">
+        <mat-select formControlName="product" name="product">
             <mat-option *ngFor="let product of products" [value]="product.id">
                 {{product.name}}
             </mat-option>
@@ -9,12 +9,13 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Quantity</mat-label>
-        <input matInput formControlName="quantity" name="quantity" (change)="onChange()" />
-        <mat-error *ngIf="!isQuantityValid">
+        <input matInput formControlName="quantity" name="quantity" />
+
+        <mat-error *ngIf="!formGroup.controls.quantity.valid">
             <strong>Please enter a valid quantity</strong>
         </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="onClick()" [disabled]="!(isProductSelected && isQuantityValid)">Calculate</button>
-    <mat-label>Price :</mat-label>
-    <mat-card *ngIf='priceItem!=null'>{{priceItem.price}}</mat-card>
 </form>
+<button mat-raised-button color="primary" (click)="onClick()" [disabled]="formGroup.invalid">Calculate</button>
+<mat-label>Price :</mat-label>
+<mat-card *ngIf='priceItem!=null'>{{priceItem.price}}</mat-card>
